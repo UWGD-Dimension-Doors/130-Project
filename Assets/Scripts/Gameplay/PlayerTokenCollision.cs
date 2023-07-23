@@ -9,6 +9,8 @@ namespace Platformer.Gameplay
     /// Fired when a player collides with a token.
     /// </summary>
     /// <typeparam name="PlayerCollision"></typeparam>
+
+
     public class PlayerTokenCollision : Simulation.Event<PlayerTokenCollision>
     {
         public PlayerController player;
@@ -16,9 +18,15 @@ namespace Platformer.Gameplay
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
+        // Constants affecting player sprite scaling.
+        private Vector3 playerScaleChange = new(0.02f, 0.02f, 0.0f);
+
         public override void Execute()
         {
             AudioSource.PlayClipAtPoint(token.tokenCollectAudio, token.transform.position);
+
+            // Rescale the player sprite when a coin is collected.
+            player.GetComponent<SpriteRenderer>().transform.localScale += playerScaleChange;
         }
     }
 }
