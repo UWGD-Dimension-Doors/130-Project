@@ -24,11 +24,15 @@ namespace Platformer.Mechanics
         /// </summary>
         public Vector2 velocity;
 
+        public Vector2 floatDown;
+
         /// <summary>
         /// Is the entity currently sitting on a surface?
         /// </summary>
         /// <value></value>
         public bool IsGrounded { get; private set; }
+
+        public bool playerInput = false;
 
         protected Vector2 targetVelocity;
         protected Vector2 groundNormal;
@@ -46,6 +50,7 @@ namespace Platformer.Mechanics
         /// <param name="value"></param>
         public void Bounce(float value)
         {
+            velocity.x = value;
             velocity.y = value;
         }
 
@@ -91,6 +96,7 @@ namespace Platformer.Mechanics
         protected virtual void Update()
         {
             targetVelocity = Vector2.zero;
+            floatDown.y = -gravityModifier;
             ComputeVelocity();
         }
 
@@ -102,12 +108,19 @@ namespace Platformer.Mechanics
         protected virtual void FixedUpdate()
         {
             //if already falling, fall faster than the jump speed, otherwise use normal gravity.
-            if (velocity.y < 0)
-                velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
-            else
-                velocity += Physics2D.gravity * Time.deltaTime;
+            //if (velocity.y < 0)
+                //velocity += gravityModifier * Physics2D.gravity * Time.deltaTime;
+            //else
 
-            velocity.x = targetVelocity.x;
+            if (playerInput)
+            {
+                velocity.x = targetVelocity.x;
+                velocity.y = targetVelocity.y;
+            }
+            else 
+            {
+                velocity = Physics2D.gravity * gravityModifier;
+            }
 
             IsGrounded = false;
 
@@ -115,7 +128,7 @@ namespace Platformer.Mechanics
 
             var moveAlongGround = new Vector2(groundNormal.y, -groundNormal.x);
 
-            var move = moveAlongGround * deltaPosition.x;
+            var move = deltaPosition;
 
             PerformMovement(move, false);
 
@@ -169,7 +182,9 @@ namespace Platformer.Mechanics
                     distance = modifiedDistance < distance ? modifiedDistance : distance;
                 }
             }
-            body.position = body.position + move.normalized * distance;
+                body.position = body.position + move.normalized * distance;
+           
+            
         }
 
     }
