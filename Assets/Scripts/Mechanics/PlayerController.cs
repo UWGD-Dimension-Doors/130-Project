@@ -26,6 +26,8 @@ namespace Platformer.Mechanics
         /// Initial jump velocity at the start of a jump.
         /// </summary>
         public float jumpTakeOffSpeed = 7;
+        public float driftSpeed = 7f;
+        public float airLinearDrag = 2.5f;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
@@ -56,20 +58,42 @@ namespace Platformer.Mechanics
             if (controlEnabled)
             {
                 move.x = Input.GetAxis("Horizontal");
-                if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
-                    jumpState = JumpState.PrepareToJump;
-                else if (Input.GetButtonUp("Jump"))
-                {
-                    stopJump = true;
-                    Schedule<PlayerStopJump>().player = this;
-                }
+                move.y = Input.GetAxis("Vertical");
             }
+
             else
             {
                 move.x = 0;
             }
-            UpdateJumpState();
+
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+            {
+                playerInput = false;
+            }
+            else 
+            {
+                playerInput = true;
+            }
+            MoveCharacter();
+            ApplyAirLinearDrag();
+           // if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
+          //  {
+            //    body.AddForce(new Vector2(move.x, move.y) * driftSpeed);
+             //   ApplyAirLinearDrag();
+           // }
+
             base.Update();
+        }
+
+
+        private void MoveCharacter()
+        {
+            body.AddForce(new Vector2(move.x, move.y) * driftSpeed);
+            if (Mathf.Abs(body.velocity.x) > driftSpeed)
+                body.velocity = new Vector2(Mathf.Sign(body.velocity.x) * driftSpeed, body.velocity.y);
+
+            if (Mathf.Abs(body.velocity.y) > driftSpeed)
+                body.velocity = new Vector2(body.velocity.x * driftSpeed, Mathf.Sign(body.velocity.y) * driftSpeed);
         }
 
         void UpdateJumpState()
@@ -125,6 +149,7 @@ namespace Platformer.Mechanics
 
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
+            animator.SetFloat("velocityY", Mathf.Abs(velocity.y) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
         }
@@ -136,6 +161,11 @@ namespace Platformer.Mechanics
             Jumping,
             InFlight,
             Landed
+        }
+
+        private void ApplyAirLinearDrag()
+        {
+            body.drag = airLinearDrag;
         }
     }
 }
