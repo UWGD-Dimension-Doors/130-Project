@@ -17,7 +17,7 @@ namespace Platformer.Mechanics
         /// <summary>
         /// A custom gravity coefficient applied to this entity.
         /// </summary>
-        public float gravityModifier = 1f;
+        public float gravityModifier = 0.1f;
 
         /// <summary>
         /// The current velocity of the entity.
