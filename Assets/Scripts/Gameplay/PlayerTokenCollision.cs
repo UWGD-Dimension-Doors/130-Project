@@ -23,10 +23,15 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
+
             AudioSource.PlayClipAtPoint(token.tokenCollectAudio, token.transform.position);
 
             // Rescale the player sprite when a coin is collected.
             player.GetComponent<SpriteRenderer>().transform.localScale += playerScaleChange;
-        }
+
+            // Increment the score when a coin is collected.
+            Score.UpdateScore();
+            Debug.Log("Player collected a token! Score: " + Score.GetScore());
+       }
     }
 }
