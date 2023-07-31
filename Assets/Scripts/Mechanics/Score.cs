@@ -12,6 +12,7 @@ namespace Platformer.Mechanics
             score += value;
         }
 
+        // change
         public static int GetScore()
         {
             return score;
