@@ -5,7 +5,7 @@ using TMPro;
 namespace Platformer.UI
 {
 
-    public class VictoryController : MonoBehaviour
+    public class VictoryUIController : MonoBehaviour
     {
         public TextMeshProUGUI FinalScore;
 
