@@ -1,6 +1,5 @@
 using Platformer.Gameplay;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using static Platformer.Core.Simulation;
 
 namespace Platformer.Mechanics
@@ -10,8 +9,6 @@ namespace Platformer.Mechanics
     /// </summary>
     public class VictoryZone : MonoBehaviour
     {
-        public string VictorySceneName = "Victory";
-
         void OnTriggerEnter2D(Collider2D collider)
         {
             var p = collider.gameObject.GetComponent<PlayerController>();
@@ -19,14 +16,7 @@ namespace Platformer.Mechanics
             {
                 var ev = Schedule<PlayerEnteredVictoryZone>();
                 ev.victoryZone = this;
-
-                LoadVictoryScene();
             }
-        }
-
-        public void LoadVictoryScene()
-        {
-            SceneManager.LoadScene(VictorySceneName);
         }
     }
 }
