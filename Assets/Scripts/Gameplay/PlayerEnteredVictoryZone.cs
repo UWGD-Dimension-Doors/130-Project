@@ -1,6 +1,7 @@
 using Platformer.Core;
 using Platformer.Mechanics;
 using Platformer.Model;
+using UnityEngine;
 
 namespace Platformer.Gameplay
 {
@@ -19,6 +20,12 @@ namespace Platformer.Gameplay
         {
             model.player.animator.SetTrigger("victory");
             model.player.controlEnabled = false;
+
+            StartVictoryScene victoryScene = GameObject.Find("Victory").GetComponent<StartVictoryScene>();
+            if (victoryScene != null)
+            {
+                victoryScene.StartAfterDelay();
+            }
         }
     }
 }
