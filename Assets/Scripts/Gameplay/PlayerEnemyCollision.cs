@@ -20,28 +20,41 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
-            var willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
+            //is set to true if the player is touching the enemy from the x or y direction
+            var willHurtEnemyY = player.Bounds.center.y >= enemy.Bounds.max.y || player.Bounds.center.y <= enemy.Bounds.max.y;
+            var willHurtEnemyX = player.Bounds.center.x >= enemy.Bounds.max.x || player.Bounds.center.x <= enemy.Bounds.max.x;
 
-            if (willHurtEnemy)
+            //is set to true if the player is the up to the size we want them to be to eat the enemy
+            var willEatEnemy = enemy.deathPoint <= player.GetComponent<SpriteRenderer>().transform.localScale.x;
+
+            if ((willHurtEnemyY && enemy.yDeath) || (willHurtEnemyX && enemy.xDeath))
             {
-                var enemyHealth = enemy.GetComponent<Health>();
-                if (enemyHealth != null)
+                if (willEatEnemy)
                 {
-                    enemyHealth.Decrement();
-                    if (!enemyHealth.IsAlive)
+                    var enemyHealth = enemy.GetComponent<Health>();
+                    if (enemyHealth != null)
+                    {
+                        enemyHealth.Decrement();
+                        if (!enemyHealth.IsAlive)
+                        {
+                            Schedule<EnemyDeath>().enemy = enemy;
+                            player.Bounce(2);
+                        }
+                        else
+                        {
+                            player.Bounce(7);
+                        }
+                    }
+                    else
                     {
                         Schedule<EnemyDeath>().enemy = enemy;
                         player.Bounce(2);
                     }
-                    else
-                    {
-                        player.Bounce(7);
-                    }
+                    player.GetComponent<SpriteRenderer>().transform.localScale += new Vector3(0.2f, 0.2f, 0);
                 }
-                else
+                else 
                 {
-                    Schedule<EnemyDeath>().enemy = enemy;
-                    player.Bounce(2);
+                    Schedule<PlayerDeath>();
                 }
             }
             else

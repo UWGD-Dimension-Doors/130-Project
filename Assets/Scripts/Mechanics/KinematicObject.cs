@@ -24,8 +24,6 @@ namespace Platformer.Mechanics
         /// </summary>
         public Vector2 velocity;
 
-        public Vector2 floatDown;
-
         /// <summary>
         /// Is the entity currently sitting on a surface?
         /// </summary>
@@ -96,7 +94,7 @@ namespace Platformer.Mechanics
         protected virtual void Update()
         {
             targetVelocity = Vector2.zero;
-            floatDown.y = -gravityModifier;
+
             ComputeVelocity();
         }
 

@@ -28,6 +28,7 @@ namespace Platformer.Gameplay
 
             // Rescale the player sprite when a coin is collected.
             player.GetComponent<SpriteRenderer>().transform.localScale += playerScaleChange;
+            Debug.Log("player is" + player.GetComponent<SpriteRenderer>().transform.localScale.x);
 
             // Increment the score when a coin is collected.
             Score.UpdateScore();

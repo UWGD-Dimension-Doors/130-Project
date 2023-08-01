@@ -22,6 +22,12 @@ namespace Platformer.Mechanics
         SpriteRenderer spriteRenderer;
 
         public Bounds Bounds => _collider.bounds;
+        //minium size needed to eat the enemy
+        public float deathPoint = 1f;
+
+        //tools for setting an enemys weak point
+        public bool xDeath;
+        public bool yDeath;
 
         void Awake()
         {
