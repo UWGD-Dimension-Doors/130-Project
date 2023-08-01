@@ -10,6 +10,7 @@ namespace Platformer.Mechanics
         public static void UpdateScore(int value = 1)
         {
             score += value;
+            UI.ScoreUIController.UpdateScoreText();
         }
 
         public static int GetScore()
