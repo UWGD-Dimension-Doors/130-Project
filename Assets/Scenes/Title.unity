@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f47ca7a584c4275bf49ae370db6aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelName: SampleScene
+  LevelName: Seamount
 --- !u!1 &1200761912
 GameObject:
   m_ObjectHideFlags: 0
