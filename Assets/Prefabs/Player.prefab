@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.9
-  gravityModifier: 1
+  gravityModifier: 0.1
   velocity: {x: 0, y: 0}
   playerInput: 0
   isPlayer: 1
