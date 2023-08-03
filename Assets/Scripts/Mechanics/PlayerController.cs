@@ -56,7 +56,7 @@ namespace Platformer.Mechanics
             animator = GetComponent<Animator>();
         }
 
-        protected override void Update()
+        protected override void FixedUpdate()
         {
 
             //body.isKinematic = false;
