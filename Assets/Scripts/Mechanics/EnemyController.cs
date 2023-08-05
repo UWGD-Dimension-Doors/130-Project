@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Platformer.Gameplay;
+﻿using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
 
@@ -22,12 +20,6 @@ namespace Platformer.Mechanics
         SpriteRenderer spriteRenderer;
 
         public Bounds Bounds => _collider.bounds;
-        //minium size needed to eat the enemy
-        public float deathPoint = 1f;
-
-        //tools for setting an enemys weak point
-        public bool xDeath;
-        public bool yDeath;
 
         void Awake()
         {
@@ -52,7 +44,7 @@ namespace Platformer.Mechanics
         {
             if (path != null)
             {
-                if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
+                mover ??= path.CreateMover(control.maxSpeed * 0.5f);
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
                 control.move.y = Mathf.Clamp(mover.Position.y - transform.position.y, -1, 1);
             }
