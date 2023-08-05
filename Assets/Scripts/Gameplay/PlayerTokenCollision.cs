@@ -20,7 +20,7 @@ namespace Platformer.Gameplay
         {
             AudioSource.PlayClipAtPoint(token.tokenCollectAudio, token.transform.position);
 
-            Schedule<PlayerAte>();
+            Schedule<PlayerAte>().enemy = null;
         }
     }
 }

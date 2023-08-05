@@ -16,11 +16,11 @@ namespace Platformer.Gameplay
 
         public Vector3 playerScaleChange = new(0.05f, 0.05f, 0.0f);
 
-        // Prey might be an enemy or a token.
-        float preyLevel = 1;
-
         public override void Execute()
         {
+            // Prey might be an enemy or a token.
+            float preyLevel = 1;
+
             if (enemy != null)
             {
                 preyLevel = enemy.GetComponent<SpriteRenderer>().transform.localScale.x;
