@@ -47,7 +47,7 @@ namespace Platformer.Gameplay
             Schedule<EnemyDeath>().enemy = enemy;
             player.Bounce(2);
 
-            player.FattenPlayerAndIncrementScore(2);
+            Schedule<PlayerAte>().enemy = enemy;
         }
     }
 }

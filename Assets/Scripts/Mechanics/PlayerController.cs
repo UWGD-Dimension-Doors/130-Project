@@ -42,9 +42,6 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => collider2d.bounds;
 
-        // Constants affecting player sprite scaling.
-        private Vector3 playerScaleChange = new(0.02f, 0.02f, 0.0f);
-
         void Awake()
         {
             health = GetComponent<Health>();
@@ -130,16 +127,6 @@ namespace Platformer.Mechanics
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
-        }
-
-        public void FattenPlayerAndIncrementScore(int value = 1)
-        {
-            Vector3 adjustedPlayerScaleChange = playerScaleChange * value;
-
-            spriteRenderer.transform.localScale += adjustedPlayerScaleChange;
-
-            // Increment the score when a coin is collected.
-            Score.UpdateScore(value);
         }
 
         public enum JumpState
