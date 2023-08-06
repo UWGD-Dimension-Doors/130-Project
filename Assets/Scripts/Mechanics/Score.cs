@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Platformer.Mechanics
@@ -7,9 +8,9 @@ namespace Platformer.Mechanics
         private static int score = 0;
 
         // Change the score by the input amount, or increment it by 1 by default.
-        public static void UpdateScore(int value = 1)
+        public static void UpdateScore(float value = 1)
         {
-            score += value;
+            score += (int) Math.Round(value * 10);
             UI.ScoreUIController.UpdateScoreText();
         }
 
