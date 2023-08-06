@@ -182,9 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 0}
   ouch: {fileID: 8300000, guid: b7f741588644cd64bbee6387cb54a96d, type: 3}
-  deathPoint: 0
-  xDeath: 1
-  yDeath: 1
 --- !u!82 &5843668731025413174
 AudioSource:
   m_ObjectHideFlags: 0

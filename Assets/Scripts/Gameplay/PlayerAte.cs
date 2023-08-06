@@ -14,7 +14,7 @@ namespace Platformer.Gameplay
         public EnemyController enemy;
         readonly PlayerController player = Simulation.GetModel<PlatformerModel>().player;
 
-        public Vector3 playerScaleChange = new(0.05f, 0.05f, 0.0f);
+        public Vector3 playerScaleChange = new(0.1f, 0.1f, 0.0f);
 
         public override void Execute()
         {

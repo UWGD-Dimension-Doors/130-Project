@@ -65,6 +65,11 @@ namespace Platformer.Mechanics
         /// <param name="position"></param>
         public void Teleport(Vector3 position)
         {
+            if (body == null)
+            {
+                body = GetComponent<Rigidbody2D>();
+            }
+
             body.position = position;
             velocity *= 0;
             body.velocity *= 0;

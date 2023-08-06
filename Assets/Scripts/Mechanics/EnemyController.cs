@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Platformer.Core;
 using Platformer.Gameplay;
+using Platformer.Model;
 using UnityEngine;
 using static Platformer.Core.Simulation;
 
@@ -21,13 +21,9 @@ namespace Platformer.Mechanics
         internal AudioSource _audio;
         SpriteRenderer spriteRenderer;
 
-        public Bounds Bounds => _collider.bounds;
-        //minium size needed to eat the enemy
-        public float deathPoint = 1f;
+        readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
-        //tools for setting an enemys weak point
-        public bool xDeath;
-        public bool yDeath;
+        public Bounds Bounds => _collider.bounds;
 
         void Awake()
         {
@@ -52,9 +48,26 @@ namespace Platformer.Mechanics
         {
             if (path != null)
             {
-                if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
+                mover ??= path.CreateMover(control.maxSpeed * 0.5f);
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
                 control.move.y = Mathf.Clamp(mover.Position.y - transform.position.y, -1, 1);
+            }
+
+            ToggleDangerShader();
+        }
+
+        void ToggleDangerShader()
+        {
+            bool isDangerous = spriteRenderer.transform.localScale.x > model.player.GetComponent<SpriteRenderer>().transform.localScale.x;
+
+            Color transparent = new(1, 1, 1, 1);
+
+            if (isDangerous)
+            {
+                spriteRenderer.material.SetColor("_Color", Color.red);
+            } else if (spriteRenderer.material.color != transparent)
+            {
+                spriteRenderer.material.SetColor("_Color", transparent);
             }
         }
 
