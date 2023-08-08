@@ -21,11 +21,22 @@ namespace Platformer.Gameplay
             model.player.animator.SetTrigger("victory");
             model.player.controlEnabled = false;
 
+            PlayVictorySound();
+
             StartVictoryScene victoryScene = GameObject.Find("Victory").GetComponent<StartVictoryScene>();
             if (victoryScene != null)
             {
                 victoryScene.StartAfterDelay();
             }
         }
+
+        private void PlayVictorySound()
+        {
+            if (model.player.audioSource && victoryZone.victoryAudio)
+            {
+                model.player.audioSource.PlayOneShot(victoryZone.victoryAudio);
+            }
+        }
+
     }
 }
