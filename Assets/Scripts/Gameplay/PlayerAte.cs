@@ -12,12 +12,14 @@ namespace Platformer.Gameplay
     public class PlayerAte : Simulation.Event<PlayerAte>
     {
         public EnemyController enemy;
-        readonly PlayerController player = Simulation.GetModel<PlatformerModel>().player;
+        public PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public Vector3 playerScaleChange = new(0.1f, 0.1f, 0.0f);
 
         public override void Execute()
         {
+            PlayerController player = model.player;
+
             // Prey might be an enemy or a token.
             float preyLevel = 1;
 
