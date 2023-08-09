@@ -4,15 +4,14 @@ using UnityEngine.SceneManagement;
 namespace Platformer.UI
 {
     /// <summary>
-    /// A title screen with a button to load the first level.
+    /// A utility class to load a scene.
     /// </summary>
-    public class StartGame : MonoBehaviour
+    public class StartScene : MonoBehaviour
     {
         public string LevelName;
 
         public void LoadLevel()
         {
-            Debug.Log("Loading level: " + LevelName);
             SceneManager.LoadScene(LevelName);
         }
     }
