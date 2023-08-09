@@ -85,17 +85,11 @@ namespace Platformer.Mechanics
 
             if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
             {
-                if (audioSource && moveAudio)
+                if (audioSource && moveAudio && !audioSource.isPlaying)
                 {
                     audioSource.PlayOneShot(moveAudio);
                 }
             }
-
-            // if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
-            //  {
-            //    body.AddForce(new Vector2(move.x, move.y) * driftSpeed);
-            //   ApplyAirLinearDrag();
-            // }
 
             base.Update();
         }
