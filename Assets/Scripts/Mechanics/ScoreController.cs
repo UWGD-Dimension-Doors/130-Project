@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Platformer.Mechanics
 {
-    public class Score : MonoBehaviour
+    public class ScoreController : MonoBehaviour
     {
         private static int score = 0;
 
