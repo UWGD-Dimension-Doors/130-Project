@@ -34,7 +34,7 @@ namespace Platformer.Gameplay
             player.GetComponent<SpriteRenderer>().transform.localScale += adjustedPlayerScaleChange;
 
             // Increment the score after eating.
-            Score.UpdateScore(preyLevel);
+            ScoreController.UpdateScore(preyLevel);
         }
     }
 }

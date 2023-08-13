@@ -4,7 +4,6 @@ using TMPro;
 
 namespace Platformer.UI
 {
-
     public class VictoryUIController : MonoBehaviour
     {
         public TextMeshProUGUI FinalScore;
@@ -19,7 +18,7 @@ namespace Platformer.UI
         {
             if (FinalScore != null)
             {
-                FinalScore.SetText($"Your Score: {Score.GetScore()}");
+                FinalScore.SetText($"Your Score: {ScoreController.GetScore()}");
             }
         }
     }

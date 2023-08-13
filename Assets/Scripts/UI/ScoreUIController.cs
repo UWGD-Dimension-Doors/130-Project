@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using Platformer.Mechanics;
 
 namespace Platformer.UI
 {
@@ -12,7 +13,7 @@ namespace Platformer.UI
             CurrentScore = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
             if (CurrentScore != null)
             {
-                CurrentScore.SetText($"Score: {Mechanics.Score.GetScore()}");
+                CurrentScore.SetText($"Score: {ScoreController.GetScore()}");
             }
         }
 
