@@ -18,5 +18,10 @@ namespace Platformer.Mechanics
         {
             return score;
         }
+
+        public static void ResetScore()
+        {
+            score = 0;
+        }
     }
 }
