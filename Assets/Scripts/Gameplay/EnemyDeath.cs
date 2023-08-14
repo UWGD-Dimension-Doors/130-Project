@@ -1,5 +1,6 @@
 using Platformer.Core;
 using Platformer.Mechanics;
+using UnityEngine;
 
 namespace Platformer.Gameplay
 {
@@ -15,10 +16,12 @@ namespace Platformer.Gameplay
         {
             enemy._collider.enabled = false;
             enemy.control.enabled = false;
-            if (enemy._audio && enemy.ouch)
+            if (enemy.ouch)
             {
-                enemy._audio.PlayOneShot(enemy.ouch, 0.3f);
+                AudioSource.PlayClipAtPoint(enemy.ouch, enemy.transform.position);
             }
+
+            enemy.gameObject.SetActive(false);
         }
     }
 }
