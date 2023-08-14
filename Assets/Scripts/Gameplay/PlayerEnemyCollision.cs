@@ -21,14 +21,12 @@ namespace Platformer.Gameplay
 
             bool isCollision = isCollisionX || isCollisionY;
 
-            bool canEatEnemy = player.GetComponent<SpriteRenderer>().transform.localScale.x >= enemy.transform.localScale.x;
-
             if (!isCollision)
             {
                 return;
             }
 
-            if (!canEatEnemy)
+            if (enemy.IsDangerous())
             {
                 Schedule<PlayerDeath>();
                 return;

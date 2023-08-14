@@ -58,11 +58,9 @@ namespace Platformer.Mechanics
 
         void ToggleDangerShader()
         {
-            bool isDangerous = spriteRenderer.transform.localScale.x > model.player.GetComponent<SpriteRenderer>().transform.localScale.x;
-
             Color transparent = new(1, 1, 1, 1);
 
-            if (isDangerous)
+            if (IsDangerous())
             {
                 spriteRenderer.material.SetColor("_Color", Color.red);
             } else if (spriteRenderer.material.color != transparent)
@@ -71,5 +69,12 @@ namespace Platformer.Mechanics
             }
         }
 
+        public bool IsDangerous()
+        {
+            float enemyScale = spriteRenderer.transform.localScale.x;
+            float playerScale = model.player.GetComponent<SpriteRenderer>().transform.localScale.x;
+
+            return enemyScale > playerScale;
+        }
     }
 }
