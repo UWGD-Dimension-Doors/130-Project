@@ -18,7 +18,6 @@ namespace Platformer.Mechanics
         internal PatrolPath.Mover mover;
         internal AnimationController control;
         internal Collider2D _collider;
-        internal AudioSource _audio;
         SpriteRenderer spriteRenderer;
 
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
@@ -29,7 +28,6 @@ namespace Platformer.Mechanics
         {
             control = GetComponent<AnimationController>();
             _collider = GetComponent<Collider2D>();
-            _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
