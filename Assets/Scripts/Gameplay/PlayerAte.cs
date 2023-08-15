@@ -33,8 +33,11 @@ namespace Platformer.Gameplay
             // Scale up the player sprite after eating.
             player.GetComponent<SpriteRenderer>().transform.localScale += adjustedPlayerScaleChange;
 
+            View.ZoomOut.IncrementalZoomOut();
+
             // Increment the score after eating.
             ScoreController.UpdateScore(preyLevel);
         }
+
     }
 }
