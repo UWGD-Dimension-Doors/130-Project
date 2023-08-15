@@ -5,6 +5,7 @@ public class Destructible : MonoBehaviour
 {
 
     public PlayerController player;
+    public AudioClip destruction;
 
     //minimum size to break object
     public float breakPoint = 1.5f;
@@ -18,6 +19,7 @@ public class Destructible : MonoBehaviour
     {
         if (IsBreakable())
         {
+            AudioSource.PlayClipAtPoint(destruction, gameObject.transform.position);
             gameObject.SetActive(false);
         }
     }
