@@ -8,7 +8,8 @@ namespace Platformer.View
     {
         public PlatformerModel model = Simulation.GetModel<PlatformerModel>();
         private static float TargetOrthoSize = 3.5f;
-        private float speed = 0.03f;
+        private static readonly float MinOrthoSize = 3.5f, MaxOrthoSize = 5.0f;
+        private float Speed = 0.01f;
 
         void Start()
 	    {
@@ -17,26 +18,19 @@ namespace Platformer.View
 
 	    void Update()
 	    {
-            // Zoom out more quickly as player gets bigger.
-            if (model.player.transform.localScale.x > 3)
+            // Increase speed of zoom out as player grows.
+            switch (model.player.transform.localScale.x)
             {
-                speed = 0.05f;
-            }
-            else if (model.player.transform.localScale.x > 4)
-            {
-                speed = 0.08f;
-            }
-            else if (model.player.transform.localScale.x > 5)
-            {
-                speed = 0.1f;
-            }
-            else if (model.player.transform.localScale.x > 6)
-            {
-                speed = 0.2f;
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    Speed *= model.player.transform.localScale.x;
+                    break;
             }
 
             // Zoom out by no more than speed/second per frame until reaching target.
-            model.virtualCamera.m_Lens.OrthographicSize = Mathf.MoveTowards(model.virtualCamera.m_Lens.OrthographicSize, TargetOrthoSize, speed * Time.deltaTime);
+            model.virtualCamera.m_Lens.OrthographicSize = Mathf.MoveTowards(model.virtualCamera.m_Lens.OrthographicSize, TargetOrthoSize, Speed * Time.deltaTime);
         }
 
         // Zoom the camera out as the player gets bigger.
@@ -44,6 +38,7 @@ namespace Platformer.View
         {
             float adjustedZoomChange = 0.1f;
             TargetOrthoSize += adjustedZoomChange;
+            TargetOrthoSize = Mathf.Clamp(TargetOrthoSize, MinOrthoSize, MaxOrthoSize);
         }
     }
 }
