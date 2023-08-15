@@ -9,7 +9,7 @@ namespace Platformer.View
         public PlatformerModel model = Simulation.GetModel<PlatformerModel>();
         private static float TargetOrthoSize = 3.5f;
         private static readonly float MinOrthoSize = 3.5f, MaxOrthoSize = 5.0f;
-        private float Speed = 0.01f;
+        private float Speed = 0.03f;
 
         void Start()
 	    {
