@@ -28,7 +28,7 @@ public class Destructible : MonoBehaviour
     {
         if (IsBreakable())
         {
-           gameObject.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.yellow);
+           gameObject.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.magenta);
         }
     }
 
