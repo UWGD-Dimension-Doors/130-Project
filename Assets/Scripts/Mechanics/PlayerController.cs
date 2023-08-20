@@ -29,6 +29,7 @@ namespace Platformer.Mechanics
         public float jumpTakeOffSpeed = 7;
         public float driftSpeed = 7f;
         public float airLinearDrag = 2.5f;
+        public float moveSpeed;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
@@ -59,6 +60,7 @@ namespace Platformer.Mechanics
 
         protected override void FixedUpdate()
         {
+            moveSpeed = driftSpeed + gameObject.GetComponent<SpriteRenderer>().transform.localScale.x;
 
             //body.isKinematic = false;
             if (controlEnabled)
@@ -97,12 +99,12 @@ namespace Platformer.Mechanics
 
         private void MoveCharacter()
         {
-            body.AddForce(new Vector2(move.x, move.y) * driftSpeed);
-            if (Mathf.Abs(body.velocity.x) > driftSpeed)
-                body.velocity = new Vector2(Mathf.Sign(body.velocity.x) * driftSpeed, body.velocity.y);
+            body.AddForce(new Vector2(move.x, move.y) * moveSpeed);
+            if (Mathf.Abs(body.velocity.x) > moveSpeed)
+                body.velocity = new Vector2(Mathf.Sign(body.velocity.x) * moveSpeed, body.velocity.y);
 
-            if (Mathf.Abs(body.velocity.y) > driftSpeed)
-                body.velocity = new Vector2(body.velocity.x * driftSpeed, Mathf.Sign(body.velocity.y) * driftSpeed);
+            if (Mathf.Abs(body.velocity.y) > moveSpeed)
+                body.velocity = new Vector2(body.velocity.x * moveSpeed, Mathf.Sign(body.velocity.y) * moveSpeed);
         }
 
         void UpdateJumpState()
