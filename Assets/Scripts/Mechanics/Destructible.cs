@@ -1,5 +1,6 @@
 using Platformer.Mechanics;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Destructible : MonoBehaviour
 {
@@ -28,7 +29,9 @@ public class Destructible : MonoBehaviour
     {
         if (IsBreakable())
         {
-           gameObject.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.magenta);
+            gameObject.AddComponent<Light2D>();
+            gameObject.GetComponent<Light2D>().intensity = 1;
+            gameObject.GetComponent<Light2D>().color = Color.green;
         }
     }
 
