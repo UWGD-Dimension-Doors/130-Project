@@ -27,11 +27,18 @@ public class Destructible : MonoBehaviour
 
     void ToggleShader()
     {
-        if (IsBreakable())
+        if (!IsBreakable())
         {
-            gameObject.AddComponent<Light2D>();
-            gameObject.GetComponent<Light2D>().intensity = 1;
-            gameObject.GetComponent<Light2D>().color = Color.green;
+            return;
+        }
+
+        gameObject.AddComponent<Light2D>();
+        gameObject.GetComponent<Light2D>().intensity = 1;
+        gameObject.GetComponent<Light2D>().color = Color.green;
+
+        if (breakPoint >= 3f)
+        {
+            gameObject.GetComponent<Light2D>().pointLightOuterRadius = 3;
         }
     }
 
