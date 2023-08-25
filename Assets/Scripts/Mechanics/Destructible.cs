@@ -32,13 +32,18 @@ public class Destructible : MonoBehaviour
             return;
         }
 
+        if (gameObject.GetComponent<Light2D>())
+        {
+            return;
+        }
+
         gameObject.AddComponent<Light2D>();
         gameObject.GetComponent<Light2D>().intensity = 1;
         gameObject.GetComponent<Light2D>().color = Color.green;
 
         if (breakPoint >= 3f)
         {
-            gameObject.GetComponent<Light2D>().pointLightOuterRadius = 3;
+            gameObject.GetComponent<Light2D>().pointLightOuterRadius = 2;
         }
     }
 
