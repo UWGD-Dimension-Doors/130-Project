@@ -1,5 +1,6 @@
 using Platformer.Mechanics;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Destructible : MonoBehaviour
 {
@@ -26,9 +27,23 @@ public class Destructible : MonoBehaviour
 
     void ToggleShader()
     {
-        if (IsBreakable())
+        if (!IsBreakable())
         {
-           gameObject.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.magenta);
+            return;
+        }
+
+        if (gameObject.GetComponent<Light2D>())
+        {
+            return;
+        }
+
+        gameObject.AddComponent<Light2D>();
+        gameObject.GetComponent<Light2D>().intensity = 1;
+        gameObject.GetComponent<Light2D>().color = Color.green;
+
+        if (breakPoint >= 3f)
+        {
+            gameObject.GetComponent<Light2D>().pointLightOuterRadius = 2;
         }
     }
 
