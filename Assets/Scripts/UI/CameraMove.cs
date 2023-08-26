@@ -22,16 +22,16 @@ public class CameraMove : MonoBehaviour
 
         transform.position = transform.position + moveSpeed;
 
-        if (transform.position.x > 9.290164f)
+      /*  if (transform.position.x > 9.290164f)
         {
             moveSpeed = moveSpeed * -1f;
-            change = true;
-        }
+            
+        }*/
 
-        if (transform.position.x < -1.4f)
+        if (transform.position.y < -1.2f)
         {
-            moveSpeed = moveSpeed * -1f;
-            change = false;
+            moveSpeed = moveSpeed * 0f;
+            
         }
 
        // transform.position = transform.position + moveSpeed;
