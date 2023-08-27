@@ -30,6 +30,7 @@ public class TestUtils
         return "";
     }
 
+    // TODO: Seems to give false positives.
     public static IEnumerator AssertSceneLoaded(string sceneName)
     {
         WaitForSceneLoaded waitForScene = new(sceneName);
