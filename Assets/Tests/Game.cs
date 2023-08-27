@@ -10,7 +10,7 @@ public class GameTests
     {
         foreach (string SceneName in EnabledScenes)
         {
-            Assert.True(GetSceneEnabled(SceneName));
+            Assert.True(TestUtils.GetSceneEnabled(SceneName));
         }
     }
 
@@ -19,20 +19,6 @@ public class GameTests
     {
         string UnexpectedScene = "SampleScene";
 
-        Assert.False(GetSceneEnabled(UnexpectedScene));
-    }
-
-    // Helper function
-    private bool GetSceneEnabled(string sceneName)
-    {
-        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
-        {
-            if (scene.path.Contains(sceneName))
-            {
-                return scene.enabled;
-            }
-        }
-
-        return false;
+        Assert.False(TestUtils.GetSceneEnabled(UnexpectedScene));
     }
 }
