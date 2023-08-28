@@ -57,23 +57,43 @@ namespace Platformer.Mechanics
 
         void ToggleDangerShader()
         {
+            Color transparent = new(1, 1, 1, 1);
+
             if (IsDangerous())
             {
-                gameObject.GetComponent<Light2D>().intensity = 3;
+                spriteRenderer.material.SetColor("_Color", Color.red);
+                gameObject.GetComponent<Light2D>().color = Color.red;
+            }
+            else
+            {
+                spriteRenderer.material.SetColor("_Color", transparent);
+                gameObject.GetComponent<Light2D>().color = Color.white;
+            }
+
+            if (IsBoss() && IsDangerous())
+            {
+                spriteRenderer.material.SetColor("_Color", transparent);
+                gameObject.GetComponent<Light2D>().intensity = 2f;
+                return;
+            }
+            else if (IsBoss())
+            {
+                gameObject.GetComponent<Light2D>().intensity = 0.8f;
+                return;
+            }
+
+            if (IsDangerous())
+            {
+                gameObject.GetComponent<Light2D>().intensity = 2;
                 gameObject.GetComponent<Light2D>().pointLightInnerRadius = 0.25f;
                 gameObject.GetComponent<Light2D>().pointLightOuterRadius = 1;
-                gameObject.GetComponent<Light2D>().color = Color.red;
-            } else
+            }
+            else
             {
                 gameObject.GetComponent<Light2D>().intensity = 0.1f;
                 gameObject.GetComponent<Light2D>().pointLightInnerRadius = 0.25f;
                 gameObject.GetComponent<Light2D>().pointLightOuterRadius = 2;
-                gameObject.GetComponent<Light2D>().color = Color.white;
             }
-            //} else if (spriteRenderer.material.color != transparent)
-            //{
-            //    spriteRenderer.material.SetColor("_Color", transparent);
-            //}
         }
 
         public bool IsDangerous()
@@ -82,6 +102,11 @@ namespace Platformer.Mechanics
             float playerScale = model.player.GetComponent<SpriteRenderer>().transform.localScale.x;
 
             return enemyScale > playerScale;
+        }
+
+        public bool IsBoss()
+        {
+            return gameObject.transform.localScale.x >= 7;
         }
     }
 }
