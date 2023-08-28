@@ -2,6 +2,7 @@
 using Platformer.Gameplay;
 using Platformer.Model;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using static Platformer.Core.Simulation;
 
 namespace Platformer.Mechanics
@@ -56,15 +57,23 @@ namespace Platformer.Mechanics
 
         void ToggleDangerShader()
         {
-            Color transparent = new(1, 1, 1, 1);
-
             if (IsDangerous())
             {
-                spriteRenderer.material.SetColor("_Color", Color.red);
-            } else if (spriteRenderer.material.color != transparent)
+                gameObject.GetComponent<Light2D>().intensity = 3;
+                gameObject.GetComponent<Light2D>().pointLightInnerRadius = 0.25f;
+                gameObject.GetComponent<Light2D>().pointLightOuterRadius = 1;
+                gameObject.GetComponent<Light2D>().color = Color.red;
+            } else
             {
-                spriteRenderer.material.SetColor("_Color", transparent);
+                gameObject.GetComponent<Light2D>().intensity = 0.1f;
+                gameObject.GetComponent<Light2D>().pointLightInnerRadius = 0.25f;
+                gameObject.GetComponent<Light2D>().pointLightOuterRadius = 2;
+                gameObject.GetComponent<Light2D>().color = Color.white;
             }
+            //} else if (spriteRenderer.material.color != transparent)
+            //{
+            //    spriteRenderer.material.SetColor("_Color", transparent);
+            //}
         }
 
         public bool IsDangerous()
