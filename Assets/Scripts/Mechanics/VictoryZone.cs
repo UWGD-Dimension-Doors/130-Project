@@ -12,7 +12,7 @@ namespace Platformer.Mechanics
     {
         public AudioClip victoryAudio;
         private bool playerEnteredVictoryZone = false;
-        private readonly float fadeOutSpeed = 100;
+        private readonly float fadeOutSpeed = 25;
 
         private void Update()
         {
