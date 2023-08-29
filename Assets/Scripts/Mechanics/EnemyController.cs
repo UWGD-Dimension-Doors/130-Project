@@ -69,31 +69,6 @@ namespace Platformer.Mechanics
                 spriteRenderer.material.SetColor("_Color", transparent);
                 gameObject.GetComponent<Light2D>().color = Color.white;
             }
-
-            if (IsBoss() && IsDangerous())
-            {
-                spriteRenderer.material.SetColor("_Color", transparent);
-                gameObject.GetComponent<Light2D>().intensity = 2f;
-                return;
-            }
-            else if (IsBoss())
-            {
-                gameObject.GetComponent<Light2D>().intensity = 0.8f;
-                return;
-            }
-
-            if (IsDangerous())
-            {
-                gameObject.GetComponent<Light2D>().intensity = 2;
-                gameObject.GetComponent<Light2D>().pointLightInnerRadius = 0.25f;
-                gameObject.GetComponent<Light2D>().pointLightOuterRadius = 1;
-            }
-            else
-            {
-                gameObject.GetComponent<Light2D>().intensity = 0.1f;
-                gameObject.GetComponent<Light2D>().pointLightInnerRadius = 0.25f;
-                gameObject.GetComponent<Light2D>().pointLightOuterRadius = 2;
-            }
         }
 
         public bool IsDangerous()
@@ -102,11 +77,6 @@ namespace Platformer.Mechanics
             float playerScale = model.player.GetComponent<SpriteRenderer>().transform.localScale.x;
 
             return enemyScale > playerScale;
-        }
-
-        public bool IsBoss()
-        {
-            return gameObject.transform.localScale.x >= 7;
         }
     }
 }
