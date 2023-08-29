@@ -3767,8 +3767,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.7179003, y: -0.33750057, z: 0}
-    m_Extent: {x: 31.547901, y: 28.807, z: 0}
+    m_Center: {x: -0.71014977, y: -0.33275032, z: 0}
+    m_Extent: {x: 31.55255, y: 28.80035, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -4751,7 +4751,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.7
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
