@@ -8,7 +8,9 @@ public class CameraMove : MonoBehaviour
 
     public Vector3 moveSpeed = new Vector3(1,0,0);
 
-    private bool change;
+    public float stopPoint;
+
+    public bool willStop;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,7 @@ public class CameraMove : MonoBehaviour
             
         }*/
 
-        if (transform.position.y < -1.2f)
+        if (transform.position.y < stopPoint && willStop)
         {
             moveSpeed = moveSpeed * 0f;
             
