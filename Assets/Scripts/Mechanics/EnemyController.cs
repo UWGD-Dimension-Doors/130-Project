@@ -2,6 +2,7 @@
 using Platformer.Gameplay;
 using Platformer.Model;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using static Platformer.Core.Simulation;
 
 namespace Platformer.Mechanics
@@ -61,9 +62,12 @@ namespace Platformer.Mechanics
             if (IsDangerous())
             {
                 spriteRenderer.material.SetColor("_Color", Color.red);
-            } else if (spriteRenderer.material.color != transparent)
+                gameObject.GetComponent<Light2D>().color = Color.red;
+            }
+            else
             {
                 spriteRenderer.material.SetColor("_Color", transparent);
+                gameObject.GetComponent<Light2D>().color = Color.white;
             }
         }
 
