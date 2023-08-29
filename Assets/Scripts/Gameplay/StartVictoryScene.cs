@@ -5,7 +5,7 @@ using System.Collections;
 public class StartVictoryScene : MonoBehaviour
 {
     private readonly string VictorySceneName = "Victory";
-    private readonly float SecondsToDelay = 3.5f;
+    private readonly float SecondsToDelay = 5;
 
     public void StartAfterDelay()
     {
